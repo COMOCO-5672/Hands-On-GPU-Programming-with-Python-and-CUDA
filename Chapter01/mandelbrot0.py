@@ -1,3 +1,4 @@
+import os
 from time import time
 import matplotlib
 #this will prevent the figure from popping up
@@ -6,6 +7,8 @@ matplotlib.use('Agg')
 from matplotlib import pyplot as plt
 import numpy as np
 
+custom_flags = "-allow-unsupported-compiler"
+os.environ["PYCUDA_DEFAULT_NVCC_FLAGS"] = custom_flags
 
 def simple_mandelbrot(width, height, real_low, real_high, imag_low, imag_high, max_iters, upper_bound):
     
@@ -49,8 +52,8 @@ if __name__ == '__main__':
     
     dump_time = t2 - t1
     
-    print 'It took {} seconds to calculate the Mandelbrot graph.'.format(mandel_time)
-    print 'It took {} seconds to dump the image.'.format(dump_time)
+    print ('It took {} seconds to calculate the Mandelbrot graph.'.format(mandel_time))
+    print ('It took {} seconds to dump the image.'.format(dump_time))
     
     
     
