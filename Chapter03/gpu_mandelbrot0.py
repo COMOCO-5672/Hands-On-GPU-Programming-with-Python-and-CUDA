@@ -1,5 +1,6 @@
 from time import time
 import matplotlib
+import os
 #this will prevent the figure from popping up
 matplotlib.use('Agg')
 from matplotlib import pyplot as plt
@@ -7,6 +8,9 @@ import numpy as np
 import pycuda.autoinit
 from pycuda import gpuarray
 from pycuda.elementwise import ElementwiseKernel
+
+custom_flags = "-allow-unsupported-compiler"
+os.environ["PYCUDA_DEFAULT_NVCC_FLAGS"] = custom_flags
 
 mandel_ker = ElementwiseKernel(
 "pycuda::complex<float> *lattice, float *mandelbrot_graph, int max_iters, float upper_bound",
